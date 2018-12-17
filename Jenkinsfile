@@ -15,7 +15,8 @@ pipeline {
     stage('First stage') {
       steps {
         container('s2i') {
-          sh 's2i build . pingworks/demo-builder:2 demo9:1.0.2'
+          sh 's2i build . pingworks/demo-builder:2 $IMAGE_NAME:$RELEASE_VERSION'
+          sh 'docker push $IMAGE_NAME:$RELEASE_VERSION'
         }
       }
     }
